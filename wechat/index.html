@@ -7,11 +7,12 @@
   <link href="index.css" rel="stylesheet">
 </head>
 <body>
+<!--列表页-->
   <div class="exam-list">
     <h2>待审核的体检记录</h2>
     <div class="count">共有<span>0</span>条记录</div>
     <div class="list-container">
-      <div class="list-item">
+      <!--div class="list-item">
 
         <div class="exam-info">
           <div class="info-item">
@@ -50,9 +51,13 @@
         </div>
 
         <a class="btn btn-block disabled action-bar" href="javascript:;">已锁定</a>
-      </div>
-
+      </div-->
     </div>
+  </div>
+
+<!--审核详情页-->
+  <div class="exam-page">
+
   </div>
 
 </body>
@@ -60,6 +65,112 @@
 
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script>
+  var listPage =  $('.exam-list'), detailPage = $('.exam-page')
+
+  $(document).ready(function(){
+    renderList()
+  })
+
+  function renderList() {
+    var currentUserId, listCount = $('.count', listPage), listContainer = $('.list-container', listPage)
+    $.getJSON('/admin/home/audit/examination/list/0/100?state=wait', function(d){
+      if(d.status_code == 'ok' && d.message) {
+        listContainer.empty()
+        listCount.html(d.message.length)
+        d.message.forEach(function(item) {
+          var li = $('<div class="list-item"></div>')
+          li.append(
+            '<div class="exam-info">' +
+            '<div class="info-item">' +
+            '<span class="name">体检编号:</span>' +
+            '<span class="value">' + item.examId + '</span>' +
+            '</div>' +
+            '<div class="info-item">' +
+            '<span class="name">建立时间:</span>' +
+            '<span class="value">' + item.createTime + '</span>' +
+            '</div>' +
+            '</div>'
+          )
+          li.append(
+            '<div class="car-type">' +
+            '<div class="title">申请/已有的准驾车型</div>' +
+            '<div class="desc">' + concatCarType(item.applyType) + '</div>' +
+            '</div>'
+          )
+          var btn = $('<a class="btn btn-block action-bar" href="javascript:;">开始审核</a>')
+          if(!!item.locker && item.locker != currentUserId){
+            btn.addClass('disabled').html('已锁定')
+          } else {
+            btn.on('click', function(){
+              renderDetail(item.id)
+            })
+          }
+          li.append(btn)
+          listContainer.append(li)
+        })
+        listPage.show()
+        detailPage.hide()
+      }
+    })
+  }
+
+  function renderDetail(examId) {
+    var back = $('<a href="javascript:;">返回列表</a>')
+    back.on('click', function(){
+      renderList()
+    })
+    detailPage.empty()
+      .append('<h2>当前显示ID为' + examId + '的页面</h2>')
+      .append(back)
+    listPage.hide()
+    detailPage.show()
+  }
+
+  function concatCarType(str){
+    var arr = []
+    str.match(/[A-C]\d|[DEFMNP]/g).forEach(function(val){
+      arr.push(getCarType(val))
+    })
+    return arr.join('/')
+  }
+
+  function getCarType(type){
+    var item = 'TYPE_' + type
+    switch (item) {
+      case 'TYPE_C1':
+        return type + "小型汽车";
+      case 'TYPE_C2':
+        return type + "小型自动挡汽车";
+      case 'TYPE_C3':
+        return type + "低速载货汽车";
+      case 'TYPE_C4':
+        return type + "三轮汽车";
+      case 'TYPE_B1':
+        return type + "中型客车";
+      case 'TYPE_B2':
+        return type + "大型货车";
+      case 'TYPE_A1':
+        return type + "大型客车";
+      case 'TYPE_A2':
+        return type + "牵引车";
+      case 'TYPE_A3':
+        return type + "城市公共汽车";
+      case 'TYPE_D':
+        return type + "普通三轮摩托车";
+      case 'TYPE_E':
+        return type + "普通二轮摩托车";
+      case 'TYPE_F':
+        return type + "轻便摩托车";
+      case 'TYPE_M':
+        return type + "轮式自行机械车";
+      case 'TYPE_N':
+        return type + "无轨电车";
+      case 'TYPE_P':
+        return type + "有轨电车";
+      default:
+        return "";
+    }
+  }
 
 </script>
 </html>
