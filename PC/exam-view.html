@@ -10,6 +10,7 @@
   <div class="main-container">
     <div class="exam-container">
       <!--身高-->
+      <!--如果高亮，添加warn-->
       <div class="exam-item">
         <div class="title">身高</div>
         <div class="info-box">
@@ -56,8 +57,6 @@
                 <span class="label">左上肢:</span>
                 <div class="value form-inline">
                   <select class="form-control" id="lArm">
-                    <option value="1">正常</option>
-                    <option value="0">异常</option>
                   </select>
                 </div>
               </div>
@@ -65,8 +64,6 @@
                 <span class="label">右上肢:</span>
                 <div class="value form-inline">
                   <select class="form-control" id="rArm">
-                    <option value="1">正常</option>
-                    <option value="0">异常</option>
                   </select>
                 </div>
               </div>
@@ -77,15 +74,13 @@
           </div>
         </div>
         <div class="half-col">
-          <div class="exam-item warn">
+          <div class="exam-item">
             <div class="title">躯干和颈部</div>
             <div class="info-box">
               <div class="info-desc">
                 <span class="label">运动功能障碍:</span>
                 <div class="value form-inline">
                   <select class="form-control" id="obstacle">
-                    <option value="1">正常</option>
-                    <option value="0">异常</option>
                   </select>
                 </div>
               </div>
@@ -113,8 +108,6 @@
             <span class="label has-form">左下肢:</span>
             <div class="value form-inline">
               <select class="form-control" id="lLeg">
-                <option value="1">正常</option>
-                <option value="0">异常</option>
               </select>
             </div>
           </div>
@@ -122,8 +115,6 @@
             <span class="label">右下肢:</span>
             <div class="value form-inline">
               <select class="form-control" id="rLeg">
-                <option value="1">正常</option>
-                <option value="0">异常</option>
               </select>
             </div>
           </div>
@@ -180,8 +171,6 @@
 
               <div class="value form-inline">
                 <select class="form-control" id="lCorrect">
-                  <option value="1">正常</option>
-                  <option value="0">异常</option>
                 </select>
               </div>
             </div>
@@ -195,8 +184,6 @@
               <span class="label">矫正:</span>
               <div class="value form-inline">
                 <select class="form-control" id="rCorrect">
-                  <option value="1">正常</option>
-                  <option value="0">异常</option>
                 </select>
               </div>
             </div>
@@ -244,8 +231,6 @@
             <span class="label">佩戴助听装置:</span>
             <div class="value form-inline">
               <select class="form-control" id="aid">
-                <option value="1">正常</option>
-                <option value="0">异常</option>
               </select>
             </div>
           </div>
@@ -427,6 +412,6 @@
   </div>
   <div class="cover bottom-cover"></div>
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-  <script src="index.js" />
+  <script src="exam-view.js"></script>
 </body>
 </html>
