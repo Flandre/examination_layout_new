@@ -6,6 +6,7 @@
   <link href="index.css" rel="stylesheet"/>
 </head>
 <body>
+  <div class="cover top-cover"></div>
   <div class="main-container">
     <div class="exam-container">
       <!--身高-->
@@ -299,22 +300,103 @@
 
     </div>
     <div class="user-info">
-      <div class="panel">
-        <div class="top-border">
-          <h2 class="top-title">体检结果</h2>
-          <!--
-          审核中：不显示图片
-          状态通过：使用examination-success图片
-          状态不通过：使用examination-failed图片
-          -->
-          <img src="images/examination-success.png" class="examination-status">
-          <!--
-          状态为"不通过"才显示
-          -->
-          <p class="failed-desc">患有影响肢体活动的神经系统疾病等妨碍安全驾驶疾病患有影响肢体</p>
+      <div class="top-panel">
+        <h2 class="top-title">体检结果</h2>
+        <!--
+        审核中：不显示图片
+        状态通过：使用examination-success图片
+        状态不通过：使用examination-failed图片
+        -->
+        <img src="images/examination-success.png" class="examination-status">
+        <!--
+        状态为"不通过"才显示
+        -->
+        <p class="failed-desc">患有影响肢体活动的神经系统疾病等妨碍安全驾驶疾病患有影响肢体</p>
+      </div>
+
+      <div class="row photo-container">
+        <div class="half-col">
+          <img src="./test/avatar.jpg" class="photo">
+          <p class="desc">证件照</p>
+        </div>
+        <div class="half-col">
+          <img src="./test/avatar.jpg" class="photo">
+          <p class="desc">证件照</p>
+        </div>
+      </div>
+
+      <div class="type-container">
+        <div class="title">
+          申请/已有的准驾车型
+        </div>
+        <div class="info">
+          C1小型汽车/A1大型货车
+        </div>
+      </div>
+
+      <div class="title-container">
+        <div class="title">申请人信息</div>
+      </div>
+      <div class="info-container">
+        <div class="info-item">
+          <span class="type">姓名:</span>
+          <span class="text">张小明</span>
+        </div>
+        <div class="info-item">
+          <span class="type">性别:</span>
+          <span class="text">女</span>
+        </div>
+        <div class="info-item">
+          <span class="type">出生日期:</span>
+          <span class="text">1996年5月6日</span>
+        </div>
+      </div>
+
+      <div class="title-container">
+        <div class="title">申告信息</div>
+      </div>
+      <div class="illness-desc">
+        <span class="fix-margin">体检人</span>
+        <div class="check-item fix-margin active">具有</div>
+        <div class="check-item">不具有</div>
+        <span class="toggle-list">下列疾病或者情况</span>
+      </div>
+      <div class="illness-list">
+        <div class="clear-fix">
+          <div class="half illness-item active">
+            <span>器质性心脏病</span>
+          </div>
+          <div class="half illness-item">
+            <span>癫痫</span>
+          </div>
+          <div class="half illness-item active">
+            <span>美尼尔氏症</span>
+          </div>
+          <div class="half illness-item">
+            <span>眩晕</span>
+          </div>
+          <div class="half illness-item">
+            <span>癔病</span>
+          </div>
+          <div class="half illness-item">
+            <span>震颤麻痹</span>
+          </div>
+          <div class="half illness-item">
+            <span>精神病</span>
+          </div>
+          <div class="half illness-item">
+            <span>痴呆</span>
+          </div>
+        </div>
+        <div class="fix-line illness-item">
+          <span>影响肢体活动的神经系统疾病等方案安全驾驶疾病</span>
+        </div>
+        <div class="fix-line illness-item">
+          <span>三年以内吸食、注射毒品行为或者解除强制隔离戒毒措施未满三年，或者长期服用依赖精神药品成瘾尚未戒除</span>
         </div>
       </div>
     </div>
   </div>
+  <div class="cover bottom-cover"></div>
 </body>
 </html>
