@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>体检审核</title>
-  <link href="index.css" rel="stylesheet"/>
+  <link href="exam-view.css" rel="stylesheet"/>
 </head>
 <body>
   <div class="cover top-cover"></div>
@@ -16,7 +16,7 @@
           <div class="info-desc">
             <span class="label has-form">身高:</span>
             <div class="value form-inline">
-              <input type="text" value="176" class="form-control">
+              <input type="text" value="" class="form-control">
             </div>
             <span class="has-form">厘米</span>
           </div>
@@ -54,11 +54,21 @@
             <div class="info-box">
               <div class="info-desc">
                 <span class="label">左上肢:</span>
-                <span class="value">正常</span>
+                <div class="value form-inline">
+                  <select class="form-control" id="lArm">
+                    <option value="1">正常</option>
+                    <option value="0">异常</option>
+                  </select>
+                </div>
               </div>
               <div class="info-desc">
                 <span class="label">右上肢:</span>
-                <span class="value">正常</span>
+                <div class="value form-inline">
+                  <select class="form-control" id="rArm">
+                    <option value="1">正常</option>
+                    <option value="0">异常</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="image-box">
@@ -71,12 +81,13 @@
             <div class="title">躯干和颈部</div>
             <div class="info-box">
               <div class="info-desc">
-                <span class="label">左上肢:</span>
-                <span class="value">正常</span>
-              </div>
-              <div class="info-desc">
-                <span class="label">右上肢:</span>
-                <span class="value">正常</span>
+                <span class="label">运动功能障碍:</span>
+                <div class="value form-inline">
+                  <select class="form-control" id="obstacle">
+                    <option value="1">正常</option>
+                    <option value="0">异常</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -101,7 +112,7 @@
           <div class="info-desc">
             <span class="label has-form">左下肢:</span>
             <div class="value form-inline">
-              <select class="form-control" id="sljzyy">
+              <select class="form-control" id="lLeg">
                 <option value="1">正常</option>
                 <option value="0">异常</option>
               </select>
@@ -109,7 +120,12 @@
           </div>
           <div class="info-desc">
             <span class="label">右下肢:</span>
-            <span class="value">正常</span>
+            <div class="value form-inline">
+              <select class="form-control" id="rLeg">
+                <option value="1">正常</option>
+                <option value="0">异常</option>
+              </select>
+            </div>
           </div>
         </div>
         <!-- 滑动类展示图 -->
@@ -153,13 +169,20 @@
                 <div class="check-item active">是</div>
                 <div class="check-item">否</div>
               </div-->
-              <div class="check-group">
+              <!--div class="check-group">
                 <label class="checkbox-inline">
                   <input type="checkbox" value="option1"> 是
                 </label>
                 <label class="checkbox-inline">
                   <input type="checkbox" value="option2"> 否
                 </label>
+              </div-->
+
+              <div class="value form-inline">
+                <select class="form-control" id="lCorrect">
+                  <option value="1">正常</option>
+                  <option value="0">异常</option>
+                </select>
               </div>
             </div>
           </div>
@@ -170,9 +193,11 @@
             </div>
             <div class="info-desc">
               <span class="label">矫正:</span>
-              <div class="check-group">
-                <div class="check-item active">是</div>
-                <div class="check-item">否</div>
+              <div class="value form-inline">
+                <select class="form-control" id="rCorrect">
+                  <option value="1">正常</option>
+                  <option value="0">异常</option>
+                </select>
               </div>
             </div>
           </div>
@@ -217,9 +242,11 @@
           </div>
           <div class="info-desc">
             <span class="label">佩戴助听装置:</span>
-            <div class="check-group">
-              <div class="check-item active">是</div>
-              <div class="check-item">否</div>
+            <div class="value form-inline">
+              <select class="form-control" id="aid">
+                <option value="1">正常</option>
+                <option value="0">异常</option>
+              </select>
             </div>
           </div>
         </div>
