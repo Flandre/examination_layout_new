@@ -39,6 +39,35 @@ body {
   }
 }
 
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  &.btn-primary {
+    color: #fff;
+    background-color: #00A2FF;
+    border-color: #00A2FF;
+  }
+  &.btn-gray {
+    color: #fff;
+    background-color: #A4B2C3;
+    border-color: #A4B2C3;
+  }
+}
+
 .main-container {
   width: 1220px;
   margin: 30px auto;
@@ -317,6 +346,48 @@ body {
       }
       .clear-fix {
         overflow: hidden;
+      }
+    }
+  }
+}
+.bottom-action-panel {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  .bottom-action-container {
+    width: 1220px;
+    margin: 0 auto;
+  }
+  .action-bar {
+    height: 60px;
+    background: #fff;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, .15);
+    text-align: center;
+    padding: 10px 0;
+    &.exam-action {
+      width: 830px;
+      float: left;
+      .btn {
+        font-size: 16px;
+        line-height: 40px;
+        padding: 0;
+        width: 168px;
+        height: 40px;
+        margin: 0 20px;
+      }
+    }
+    &.user-action {
+      width: 360px;
+      float: right;
+      .btn {
+        font-size: 18px;
+        line-height: 40px;
+        padding: 0 15px 0 45px;
+        background-image: url('./images/video-icon.png');
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+        background-position: 15px 10px;
       }
     }
   }
