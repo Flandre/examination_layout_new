@@ -68,6 +68,30 @@ body {
   }
 }
 
+.form-control {
+  font-size: 15px;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  box-shadow: none;
+  -webkit-appearance: none;
+  &:focus {
+    border-color: #5bb6fa;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(91,182,250,.6);
+  }
+}
+.form-inline .form-control {
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
+
 .main-container {
   width: 1220px;
   margin: 30px auto;
@@ -96,37 +120,58 @@ body {
         background: #DBDBDB;
         border-radius: 2px;
       }
-      .info-desc {
-        font-size: 15px;
-        line-height: 30px;
-        margin-bottom: 0;
-        overflow: hidden;
-        .value {
-          margin-left: 10px;
+      .info-box {
+        &:after {
+          display: block;
+          content: '';
+          clear: both;
+          visibility: hidden;
         }
-        .check-group {
-          margin-left: 10px;
-          display: inline-block;
-          .check-item {
-            display: inline-block;
-            font-size: 14px;
-            line-height: 28px;
-            padding-left: 17px;
-            background: url("images/checkbox.png") left 9px no-repeat;
-            margin-right: 15px;
-            &.active {
-              background: url("images/checked.png") left 9px no-repeat;
+        .info-desc {
+          font-size: 15px;
+          line-height: 30px;
+          margin-bottom: 0;
+          overflow: hidden;
+          float: left;
+          margin-right: 60px;
+          .label {
+            float: left;
+            &.has-form {
+              line-height: 34px;
             }
           }
-          .checkbox-inline {
-            margin-right: 15px;
+          .value {
+            float: left;
+            margin-left: 10px;
+            select {
+              font-size: 15px;
+            }
+          }
+          .check-group {
+            margin-left: 10px;
+            display: inline-block;
+            .check-item {
+              display: inline-block;
+              font-size: 14px;
+              line-height: 28px;
+              padding-left: 17px;
+              background: url("images/checkbox.png") left 9px no-repeat;
+              margin-right: 15px;
+              &.active {
+                background: url("images/checked.png") left 9px no-repeat;
+              }
+            }
+            .checkbox-inline {
+              margin-right: 15px;
+            }
           }
         }
       }
-      .info-inline {
+      .info-group {
+        float: left;
         overflow: hidden;
+        margin-right: 60px;
         .info-desc {
-          float: left;
           margin-right: 20px;
           &:last-child {
             margin-right: 0;
