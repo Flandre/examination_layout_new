@@ -136,16 +136,16 @@ body {
           &:last-child {
             margin-right: 0;
           }
-          &.fix-form-width {
+          &.fix-show.fix-form-width {
             margin-right: 0;
             select {
               width: 210px;
             }
           }
-          &.fix-form-inline {
+          &.fix-show.fix-form-inline {
             margin-bottom: 10px;
           }
-          &.fix-edit-margin {
+          &.fix-show.fix-edit-margin {
             padding-bottom: 44px;
           }
           .label {
@@ -189,59 +189,61 @@ body {
           }
         }
       }
-      .swiper-container {
-        width: 100%;
+      .swiper-scroll {
+        overflow: hidden;
         margin-top: 15px;
-        position: relative;
-        padding-left: 40px;
-        padding-right: 40px;
-        .swiper-scroll {
+        .swiper-scroll-container {
+          width: 1000px;
           overflow: hidden;
-          .swiper-scroll-container {
-            width: 1000px;
-            overflow: hidden;
-            .swiper-item {
-              width: 150px;
-              margin-right: 20px;
-              float: left;
-              white-space: nowrap;
-              img {
-                display: block;
-                width: 100%;
-                height: auto;
-              }
-              &:last-child {
-                margin-right: 0;
-              }
+          margin: 0 auto;
+          .swiper-item {
+            width: 150px;
+            margin-right: 20px;
+            float: left;
+            white-space: nowrap;
+            img {
+              display: block;
+              width: 100%;
+              height: auto;
+            }
+            &:last-child {
+              margin-right: 0;
             }
           }
         }
-        .control {
-          position: absolute;
-          width: 20px;
-          height: 20px;
-          background: #EDEDED;
-          border-radius: 3px;
-          padding: 4px;
-          top: 50%;
-          margin-top: -10px;
-          &:hover {
-            background: #D9D9D9
-          }
-          &.prev {
-            left: 0;
-            transform: rotate(90deg);
-          }
-          &.next {
-            right: 0;
-            transform: rotate(-90deg);
-          }
-          img {
-            display: block;
-            width: 100%;
-          }
-        }
       }
+      //.swiper-container {
+      //  width: 100%;
+      //  margin-top: 15px;
+      //  position: relative;
+      //  padding-left: 40px;
+      //  padding-right: 40px;
+      //  .control {
+      //    position: absolute;
+      //    width: 20px;
+      //    height: 20px;
+      //    background: #EDEDED;
+      //    border-radius: 3px;
+      //    padding: 4px;
+      //    top: 50%;
+      //    margin-top: -10px;
+      //    &:hover {
+      //      background: #D9D9D9
+      //    }
+      //    &.prev {
+      //      left: 0;
+      //      transform: rotate(90deg);
+      //    }
+      //    &.next {
+      //      right: 0;
+      //      transform: rotate(-90deg);
+      //    }
+      //    img {
+      //      display: block;
+      //      width: 100%;
+      //    }
+      //  }
+      //}
       .image-box {
         width: 150px;
         margin: 15px auto 0;
@@ -280,13 +282,13 @@ body {
       border-bottom: 1px solid #dbdbdb;
       .top-title {
         font-size: 24px;
-        margin-bottom: 20px;
       }
       .examination-status {
+        margin-top: 20px;
         display: inline-block;
-        margin-bottom: 20px;
       }
       .failed-desc {
+        margin-top: 20px;
         font-size: 14px;
         line-height: 22px;
       }
@@ -372,6 +374,9 @@ body {
         background-size: 14px 14px;
         cursor: pointer;
         text-decoration: underline;
+        &.active {
+          background-image: url("images/arrow-top.png");
+        }
       }
       .fix-margin{
         margin-right: 15px;

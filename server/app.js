@@ -114,13 +114,13 @@ var examData = {
     "body": "niF2fbFnemq5saqz.png,F97ESFHFVJ3MgE6F.png,1,1511111167855",
     "color": "1,1511111254678",
     "correction": "1,0,0,1511111111000",
-    "createTime": 1520283333336,
-    "createTimestamp": 1520283333336,
+    "createTime": 1520281545680,
+    "createTimestamp": 1520281545680,
     "deviceId": "vpe00001",
-    "examId": "0008",
+    "examId": "0010",
     "hearing": "1,1,1511111123666",
     "height": "175,1511111115435",
-    "id": 8,
+    "id": 10,
     "infoGenderName": "",
     "infoIdCard": "",
     "infoName": "",
@@ -130,53 +130,74 @@ var examData = {
     "locker": 1,
     "mdHistory": "1,2,3",
     "photo": "BP6eCVMfNTDmKRUs.png",
-    "showExamId": "0008",
+    "showExamId": "0010",
     "status": 2,
-    "statusName": "待审核",
+    "statusName": "提交失败",
     "uLimbs": "jWewedza7qhWhgjt.png,4,3,1511111145678",
     "vehicleType": "C1小型汽车",
-    "vision": "5.0,5.0,1511111964555"
+    "vision": "5.0,5.0,1511111964555",
+    "feedback":"这是备注备注备注"
   },
-  "exam_show": {
-    "height": 175,
-    "arm": {
-      "left": 0,
-      "right": 1
-    },
-    "obstacle": 1,
-    "leg": {
-      "left": 0,
-      "right": 1
-    },
-    "eye": {
-      "left":{
-        "value" : "5.0",
-        "correct" : 0
+  "examData": {
+    "vision": {
+      "left": {
+        "correct": 1,
+        "value": "5.0"
       },
-      "right":{
-        "value" : "4.9",
-        "correct" : 1
+      "right": {
+        "correct": 0,
+        "value": "5.0"
       }
     },
-    "hearing" : {
-      "left": 0,/* 异常 */
-      "right" : 1,/* 正常 */
-      "aid" : 1
+    "color": 1,
+    "hearing": {
+      "left": 1,
+      "right": 1,
+      "aid": 0
     },
-    "color": 0 /* 异常 */
+    "body": 1,
+    "arm": {
+      "left": 4,
+      "right": 3
+    },
+    "height": 175,
+    "leg": {
+      "left": 1,
+      "right": 1
+    }
   },
   "status_code": "ok",
-  "examId": 8,
+  "examImgs": {
+    "rBody": "/admin/home/audit/examination/photo/1/10/4",
+    "uLimbs": "/admin/home/audit/examination/photo/1/10/jWewedza7qhWhgjt.png",
+    "lBody": "/admin/home/audit/examination/photo/1/10/jWewedza7qhWhgjt.png"
+  },
+  "examId": 10,
   "adminId": 6,
   "keyFrameMap": {
-    "1511111115435": "height",
-    "1511111116667": "lLimbs",
-    "1511111123666": "hearing",
-    "1511111145678": "uLimbs",
-    "1511111167855": "body",
-    "1511111254678": "color",
-    "1511111964555": "vision"
+    "height": 1511111115,
+    "lLimbs": 1511111116,
+    "hearing": 1511111123,
+    "uLimbs": 1511111145,
+    "body": 1511111167,
+    "color": 1511111254,
+    "vision": 1511111964
   },
+  "infoImgs": {
+    "license": "/admin/home/audit/examination/photo/1/10/BP6eCVMfNTDmKRUs.png",
+    "idcard": "/admin/home/audit/exam/identity/1/idphoto.png"
+  },
+  "monitorImgs": {
+    "log_1": ["./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg",],
+    "log_2": ["./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg"],
+    "log_3": ["./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg",],
+    "log_4": ["./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg"],
+    "log_5": ["./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg",],
+    "log_6": ["./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg"],
+    "log_7": ["./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg",],
+    "log_8": ["./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg"],
+  },
+  "videoUrl": "",
   "info": {
     "accountId": 1,
     "birthDate": 1529424000000,
@@ -189,7 +210,7 @@ var examData = {
     "idPhoto": "4KBh4GKnaVgQKzNU.png",
     "idType": "A",
     "idTypeName": "居民身份证",
-    "name": "啊啊啊",
+    "name": "王梓齐",
     "nation": "汉族",
     "updateTime": 1539655812858,
     "updateTimeStamp": 1539655812858

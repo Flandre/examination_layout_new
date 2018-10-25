@@ -57,26 +57,38 @@ function getExamData(id) {
       switch (d.exam.status){
         case 2:
           // 审核中
+          $('.state_3').hide()
+          $('.state_4').hide()
           isExam = true
           break
         case 3:
           // 通过
+          $('.state_3').show()
+          $('.state_4').hide()
           isExam = false
           break
         case 4:
           // 不通过
+          $('.state_3').hide()
+          $('.state_4').show()
           isExam = false
           break
       }
       initForm(isExam)
+      if(d.exam.feedback){
+        $('.failed-desc').html(d.exam.feedback).show()
+      } else {
+        $('.failed-desc').html('').hide()
+      }
       renderUserInfo(d.info, d.exam)
-      renderHeight(d.exam_show.height)
-      renderArm(d.exam_show.arm)
-      renderObstacle(d.exam_show.obstacle)
-      renderLeg(d.exam_show.leg)
-      renderEyes(d.exam_show.eye)
-      renderHearing(d.exam_show.hearing)
-      renderColor(d.exam_show.color)
+      renderHeight(d.examData.height)
+      renderArm(d.examData.arm)
+      renderObstacle(d.examData.body)
+      renderLeg(d.examData.leg)
+      renderEyes(d.examData.vision)
+      renderHearing(d.examData.hearing)
+      renderColor(d.examData.color)
+      renderSwiperImages(d.monitorImgs)
     }
   })
 }
@@ -84,14 +96,20 @@ function getExamData(id) {
 function initForm(isExam){
   $('.init-clear').html('')
   $('.init-active').removeClass('active')
-  $('.bottom-action-panel').show()
   $('.exam-item').removeClass('warn')
+  // $('.swiper-scroll-container').empty()
+  // $('.swiper-scroll-container').parents('.swiper-container').show()
+
   if(isExam){
     $('.before-exam').show()
     $('.exam-success').hide()
+    $('.fix-tag').addClass('fix-show')
+    $('.bottom-action-panel').show()
   } else {
     $('.exam-success').show()
     $('.before-exam').hide()
+    $('.fix-tag').removeClass('fix-show')
+    $('.bottom-action-panel').hide()
   }
   $(document).scrollTop = 0
 }
@@ -118,7 +136,7 @@ function renderUserInfo(info, exam){
 
 function renderHeight(height){
   $('.exam-height .value input').val(height)
-  $('.exam-height .value.value-success').html(height)
+  $('.exam-height .value.exam-success').html(height)
 }
 
 function renderArm(arm){
@@ -146,7 +164,6 @@ function renderEyes(eye){
   $('.exam-eye-left').html(eye.left.value)
   $('.exam-eye-right').html(eye.right.value)
 
-  console.log(eye.right.correct)
   $('.exam-correct-left select').val(eye.left.correct)
   $('.exam-correct-left .item_' + eye.left.correct).addClass('active')
 
@@ -164,4 +181,36 @@ function renderHearing(hearing){
 
 function renderColor(color){
   $('.exam-color .item_' + color).addClass('active')
+}
+
+function renderSwiperImages(monitorImgs){
+  $.each($('.swiper-scroll-container'), function(index, ele){
+    var imgs = []
+    $(ele).attr('data-target').split(',').forEach(function(tar){
+      imgs = imgs.concat(monitorImgs[tar])
+    })
+    if(imgs.length) {
+      $(ele).css('width', 170 * imgs.length - 20)
+      if($(ele).width() > $(ele).parents('.swiper-scroll').width()){
+        $(ele).parents('.swiper-scroll').css('overflow-x', 'scroll')
+      } else {
+        $(ele).parents('.swiper-scroll').css('overflow-x', 'hidden')
+      }
+      $(ele).empty()
+      imgs.forEach(function(img) {
+        var item = $(
+          '<div class="swiper-item">' +
+            '<img src="' + img + '">' +
+          '</div>'
+        )
+        item.on('click', function(){
+          // showImage(img)
+          console.log(img)
+        })
+        $(ele).append(item)
+      })
+    } else {
+      $(ele).parents('.swiper-scroll').hide()
+    }
+  })
 }
