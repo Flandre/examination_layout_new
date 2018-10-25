@@ -16,9 +16,10 @@
         <div class="info-box">
           <div class="info-desc">
             <span class="label has-form">身高:</span>
-            <div class="value form-inline">
+            <div class="value form-inline before-exam">
               <input type="text" value="" class="form-control">
             </div>
+            <div class="value form-inline init-clear exam-success">123</div>
             <span class="has-form">厘米</span>
           </div>
         </div>
@@ -52,7 +53,7 @@
         <div class="half-col">
           <div class="exam-item">
             <div class="title">上肢</div>
-            <div class="info-box">
+            <div class="info-box before-exam">
               <div class="info-desc fix-form-width fix-form-inline">
                 <span class="label">左上肢:</span>
                 <div class="value form-inline">
@@ -68,6 +69,16 @@
                 </div>
               </div>
             </div>
+            <div class="info-box exam-success">
+              <div class="info-desc">
+                <span class="label">左上肢:</span>
+                <div class="value form-inline init-clear">合格</div>
+              </div>
+              <div class="info-desc">
+                <span class="label">右上肢:</span>
+                <div class="value form-inline init-clear">合格</div>
+              </div>
+            </div>
             <div class="image-box">
               <img src="img/nature1.jpg">
             </div>
@@ -77,11 +88,20 @@
           <div class="exam-item">
             <div class="title">躯干和颈部</div>
             <div class="info-box">
-              <div class="info-desc fix-edit-margin">
+              <div class="info-desc fix-edit-margin before-exam">
                 <span class="label">运动功能障碍:</span>
                 <div class="value form-inline">
                   <select class="form-control" id="obstacle">
                   </select>
+                </div>
+              </div>
+              <div class="info-desc exam-success">
+                <span class="label">运动功能障碍:</span>
+                <div class="value form-inline">
+                  <div class="check-group">
+                    <div class="check-item init-active">是</div>
+                    <div class="check-item init-active">否</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -103,7 +123,7 @@
 
       <div class="exam-item">
         <div class="title">下肢</div>
-        <div class="info-box">
+        <div class="info-box before-exam">
           <div class="info-desc">
             <span class="label has-form">左下肢:</span>
             <div class="value form-inline">
@@ -117,6 +137,16 @@
               <select class="form-control" id="rLeg">
               </select>
             </div>
+          </div>
+        </div>
+        <div class="info-box exam-success">
+          <div class="info-desc">
+            <span class="label has-form">左下肢:</span>
+            <div class="value form-inline">合格</div>
+          </div>
+          <div class="info-desc">
+            <span class="label">右下肢:</span>
+            <div class="value form-inline">合格</div>
           </div>
         </div>
         <!-- 滑动类展示图 -->
@@ -170,8 +200,13 @@
               </div-->
 
               <div class="value form-inline">
-                <select class="form-control" id="lCorrect">
+                <select class="form-control before-exam" id="lCorrect">
                 </select>
+
+                <div class="check-group exam-success">
+                  <div class="check-item init-active">是</div>
+                  <div class="check-item init-active">否</div>
+                </div>
               </div>
             </div>
           </div>
@@ -183,8 +218,13 @@
             <div class="info-desc">
               <span class="label">矫正:</span>
               <div class="value form-inline">
-                <select class="form-control" id="rCorrect">
+                <select class="form-control before-exam" id="rCorrect">
                 </select>
+
+                <div class="check-group exam-success">
+                  <div class="check-item init-active">是</div>
+                  <div class="check-item init-active">否</div>
+                </div>
               </div>
             </div>
           </div>
@@ -230,8 +270,13 @@
           <div class="info-desc">
             <span class="label">佩戴助听装置:</span>
             <div class="value form-inline">
-              <select class="form-control" id="aid">
+              <select class="form-control before-exam" id="aid">
               </select>
+
+              <div class="check-group exam-success">
+                <div class="check-item init-active">是</div>
+                <div class="check-item init-active">否</div>
+              </div>
             </div>
           </div>
         </div>
@@ -268,8 +313,8 @@
           <div class="info-desc">
             <span class="label">红绿色盲:</span>
             <div class="check-group">
-              <div class="check-item active">是</div>
-              <div class="check-item">否</div>
+              <div class="check-item init-active active">是</div>
+              <div class="check-item init-active">否</div>
             </div>
           </div>
         </div>
@@ -323,7 +368,7 @@
         </div>
         <div class="half-col">
           <img src="./test/avatar.jpg" class="photo">
-          <p class="desc">证件照</p>
+          <p class="desc">驾驶证照片</p>
         </div>
       </div>
 
@@ -331,9 +376,7 @@
         <div class="title">
           申请/已有的准驾车型
         </div>
-        <div class="info">
-          C1小型汽车/A1大型货车
-        </div>
+        <div class="info init-clear" id="vehicleType"></div>
       </div>
 
       <div class="title-container">
@@ -342,15 +385,15 @@
       <div class="info-container">
         <div class="info-item">
           <span class="type">姓名:</span>
-          <span class="text">张小明</span>
+          <span class="text init-clear" id="userName"></span>
         </div>
         <div class="info-item">
           <span class="type">性别:</span>
-          <span class="text">女</span>
+          <span class="text init-clear" id="userSex"></span>
         </div>
         <div class="info-item">
           <span class="type">出生日期:</span>
-          <span class="text">1996年5月6日</span>
+          <span class="text init-clear" id="userBirth"></span>
         </div>
       </div>
 
@@ -359,42 +402,42 @@
       </div>
       <div class="illness-desc">
         <span class="fix-margin">体检人</span>
-        <div class="check-item fix-margin active">具有</div>
-        <div class="check-item">不具有</div>
-        <span class="toggle-list">下列疾病或者情况</span>
+        <div class="check-item fix-margin init-active illness-state-has">具有</div>
+        <div class="check-item init-active illness-state-not">不具有</div>
+        <span class="toggle-list init-active active">下列疾病或者情况</span>
       </div>
-      <div class="illness-list">
+      <div class="illness-list init-active">
         <div class="clear-fix">
-          <div class="half illness-item active">
+          <div class="half illness-item init-active ill_1">
             <span>器质性心脏病</span>
           </div>
-          <div class="half illness-item">
+          <div class="half illness-item init-active ill_2">
             <span>癫痫</span>
           </div>
-          <div class="half illness-item active">
+          <div class="half illness-item init-active ill_3">
             <span>美尼尔氏症</span>
           </div>
-          <div class="half illness-item">
+          <div class="half illness-item init-active ill_4">
             <span>眩晕</span>
           </div>
-          <div class="half illness-item">
+          <div class="half illness-item init-active ill_5">
             <span>癔病</span>
           </div>
-          <div class="half illness-item">
+          <div class="half illness-item init-active ill_6">
             <span>震颤麻痹</span>
           </div>
-          <div class="half illness-item">
+          <div class="half illness-item init-active ill_7">
             <span>精神病</span>
           </div>
-          <div class="half illness-item">
+          <div class="half illness-item init-active ill_8">
             <span>痴呆</span>
           </div>
         </div>
-        <div class="fix-line illness-item">
-          <span>影响肢体活动的神经系统疾病等方案安全驾驶疾病</span>
+        <div class="fix-line illness-item ill_9">
+          <span>影响肢体活动的神经系统疾病等妨碍安全驾驶疾病</span>
         </div>
-        <div class="fix-line illness-item">
-          <span>三年以内吸食、注射毒品行为或者解除强制隔离戒毒措施未满三年，或者长期服用依赖精神药品成瘾尚未戒除</span>
+        <div class="fix-line illness-item ill_10">
+          <span>吸食、注射毒品、长期服用依赖性精神药品成瘾尚未戒除</span>
         </div>
       </div>
     </div>

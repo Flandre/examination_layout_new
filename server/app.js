@@ -161,7 +161,7 @@ var examData = {
     "idPhoto": "4KBh4GKnaVgQKzNU.png",
     "idType": "A",
     "idTypeName": "居民身份证",
-    "name": "王梓齐",
+    "name": "啊啊啊",
     "nation": "汉族",
     "updateTime": 1539655812858,
     "updateTimeStamp": 1539655812858
