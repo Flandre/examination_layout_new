@@ -42,10 +42,12 @@ $(document).ready(function(){
 })
 
 function renderOptions(id, arr){
-  var container = $('#' + id)
+  var container = $('#' + id), obj = {}
   arr.forEach(function(ele){
     container.append('<option value="' + ele.value + '">' + ele.name + '</option>')
+    obj[ele.value] = ele.name
   })
+  container.parents('.info-desc').data("o", obj)
 }
 
 function getExamData(id) {
@@ -68,6 +70,13 @@ function getExamData(id) {
       }
       initForm(isExam)
       renderUserInfo(d.info, d.exam)
+      renderHeight(d.exam_show.height)
+      renderArm(d.exam_show.arm)
+      renderObstacle(d.exam_show.obstacle)
+      renderLeg(d.exam_show.leg)
+      renderEyes(d.exam_show.eye)
+      renderHearing(d.exam_show.hearing)
+      renderColor(d.exam_show.color)
     }
   })
 }
@@ -76,6 +85,7 @@ function initForm(isExam){
   $('.init-clear').html('')
   $('.init-active').removeClass('active')
   $('.bottom-action-panel').show()
+  $('.exam-item').removeClass('warn')
   if(isExam){
     $('.before-exam').show()
     $('.exam-success').hide()
@@ -83,6 +93,7 @@ function initForm(isExam){
     $('.exam-success').show()
     $('.before-exam').hide()
   }
+  $(document).scrollTop = 0
 }
 
 function renderUserInfo(info, exam){
@@ -103,5 +114,54 @@ function renderUserInfo(info, exam){
   } else {
     $('.illness-state-not').addClass('active')
   }
+}
 
+function renderHeight(height){
+  $('.exam-height .value input').val(height)
+  $('.exam-height .value.value-success').html(height)
+}
+
+function renderArm(arm){
+  $('.exam-arm-left select').val(arm.left)
+  $('.exam-arm-left .exam-success').html($('.exam-arm-left').parents('.info-desc').data('o')[arm.left])
+
+  $('.exam-arm-right select').val(arm.right)
+  $('.exam-arm-right .exam-success').html($('.exam-arm-right').parents('.info-desc').data('o')[arm.right])
+}
+
+function renderObstacle(obstacle){
+  $('.exam-obstacle select').val(obstacle)
+  $('.exam-obstacle .item_' + obstacle).addClass('active')
+}
+
+function renderLeg(leg) {
+  $('.exam-leg-left select').val(leg.left)
+  $('.exam-leg-left .exam-success').html($('.exam-leg-left').parents('.info-desc').data('o')[leg.left])
+
+  $('.exam-leg-right select').val(leg.right)
+  $('.exam-leg-right .exam-success').html($('.exam-leg-right').parents('.info-desc').data('o')[leg.right])
+}
+
+function renderEyes(eye){
+  $('.exam-eye-left').html(eye.left.value)
+  $('.exam-eye-right').html(eye.right.value)
+
+  console.log(eye.right.correct)
+  $('.exam-correct-left select').val(eye.left.correct)
+  $('.exam-correct-left .item_' + eye.left.correct).addClass('active')
+
+  $('.exam-correct-right select').val(eye.right.correct)
+  $('.exam-correct-right .item_' + eye.right.correct).addClass('active')
+}
+
+function renderHearing(hearing){
+  $('.exam-hearing-left').html(hearing.left ? '正常' : '异常')
+  $('.exam-hearing-right').html(hearing.right ? '正常' : '异常')
+
+  $('.exam-aid select').val(hearing.aid)
+  $('.exam-aid .item_' + hearing.aid).addClass('active')
+}
+
+function renderColor(color){
+  $('.exam-color .item_' + color).addClass('active')
 }

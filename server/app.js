@@ -137,6 +137,34 @@ var examData = {
     "vehicleType": "C1小型汽车",
     "vision": "5.0,5.0,1511111964555"
   },
+  "exam_show": {
+    "height": 175,
+    "arm": {
+      "left": 0,
+      "right": 1
+    },
+    "obstacle": 1,
+    "leg": {
+      "left": 0,
+      "right": 1
+    },
+    "eye": {
+      "left":{
+        "value" : "5.0",
+        "correct" : 0
+      },
+      "right":{
+        "value" : "4.9",
+        "correct" : 1
+      }
+    },
+    "hearing" : {
+      "left": 0,/* 异常 */
+      "right" : 1,/* 正常 */
+      "aid" : 1
+    },
+    "color": 0 /* 异常 */
+  },
   "status_code": "ok",
   "examId": 8,
   "adminId": 6,
