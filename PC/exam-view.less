@@ -85,10 +85,116 @@ body {
     outline: 0;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(91,182,250,.6);
   }
+  &::-webkit-input-placeholder {
+    color: #bdbdbd;
+  }
+  &:-moz-placeholder {
+    color: #bdbdbd;
+  }
+  &:-ms-input-placeholder {
+    color: #bdbdbd;
+  }
+}
+textarea.form-control {
+  height: auto;
+  resize: none;
 }
 .form-inline .form-control {
   display: inline-block;
   width: auto;
+}
+
+.modal-container {
+  .modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .3);
+    z-index: 1200;
+    transition: 300ms;
+    opacity: 0;
+    display: none;
+  }
+  .modal-panel {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    margin-left: -300px;
+    z-index: 1210;
+    width: 600px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    transition: 300ms;
+    opacity: 0;
+    display: none;
+    .title {
+      padding: 15px;
+      border-bottom: 1px solid #dbdbdb;
+    }
+    .modal-body {
+      padding: 15px;
+    }
+    .warn-info {
+      color: #d84040;
+    }
+    .modal-footer {
+      padding: 15px;
+      border-top: 1px solid #dbdbdb;
+      text-align: right;
+    }
+  }
+  .image-container {
+    position: fixed;
+    top: 50px;
+    width: 80%;
+    left: 50%;
+    margin-left: -40%;
+    z-index: 1210;
+    transition: 300ms;
+    opacity: 0;
+    display: none;
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+  }
+  .img-close {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    z-index: 1220;
+    display: none;
+  }
+  &.show {
+    .modal-bg {
+      display: block;
+    }
+    .modal-panel {
+      display: block;
+    }
+    .image-container {
+      display: block;
+    }
+    .img-close {
+      display: block;
+    }
+    &.fade {
+      .modal-bg {
+        opacity: 1;
+      }
+      .modal-panel {
+        opacity: 1;
+      }
+      .image-container {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .main-container {
@@ -156,6 +262,10 @@ body {
             margin-left: 10px;
             select {
               font-size: 15px;
+            }
+            .input-height {
+              width: 60px;
+              margin-right: 10px;
             }
           }
           .check-group {

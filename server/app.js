@@ -110,7 +110,7 @@ var optionData = {
 }
 var examData = {
   "exam": {
-    "applyType": "C1",
+    "applyType": "MC1",
     "body": "niF2fbFnemq5saqz.png,F97ESFHFVJ3MgE6F.png,1,1511111167855",
     "color": "1,1511111254678",
     "correction": "1,0,0,1511111111000",
@@ -146,7 +146,7 @@ var examData = {
       },
       "right": {
         "correct": 0,
-        "value": "5.0"
+        "value": "4.8"
       }
     },
     "color": 1,
@@ -160,7 +160,7 @@ var examData = {
       "left": 4,
       "right": 3
     },
-    "height": 175,
+    "height": 190,
     "leg": {
       "left": 1,
       "right": 1
@@ -168,9 +168,9 @@ var examData = {
   },
   "status_code": "ok",
   "examImgs": {
-    "rBody": "/admin/home/audit/examination/photo/1/10/4",
-    "uLimbs": "/admin/home/audit/examination/photo/1/10/jWewedza7qhWhgjt.png",
-    "lBody": "/admin/home/audit/examination/photo/1/10/jWewedza7qhWhgjt.png"
+    "rBody": "./img/nature3.jpg",
+    "uLimbs": "./img/nature4.jpg",
+    "lBody": "./img/nature5.jpg"
   },
   "examId": 10,
   "adminId": 6,
@@ -184,8 +184,8 @@ var examData = {
     "vision": 1511111964
   },
   "infoImgs": {
-    "license": "/admin/home/audit/examination/photo/1/10/BP6eCVMfNTDmKRUs.png",
-    "idcard": "/admin/home/audit/exam/identity/1/idphoto.png"
+    "license": "./img/nature5.jpg",
+    "idcard": "./img/nature6.jpg"
   },
   "monitorImgs": {
     "log_1": ["./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg","./img/nature1.jpg",],

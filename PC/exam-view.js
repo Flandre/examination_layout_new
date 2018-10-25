@@ -1,3 +1,4 @@
+var isExam = false
 $(document).ready(function(){
   var query = {}, idx = (window.location + '').indexOf('?')
   window.readOnly = 'audit'
@@ -39,6 +40,18 @@ $(document).ready(function(){
     }
   })
 
+  $('.img-arm').on('click', function(){
+    showImage($('.img-arm').attr('src'))
+  })
+
+  $('.img-r-body').on('click', function(){
+    showImage($('.img-r-body').attr('src'))
+  })
+
+  $('.img-l-body').on('click', function(){
+    showImage($('.img-l-body').attr('src'))
+  })
+
 })
 
 function renderOptions(id, arr){
@@ -53,7 +66,6 @@ function renderOptions(id, arr){
 function getExamData(id) {
   $.getJSON('http://127.0.0.1:8233/admin/home/' + readOnly + '/examination/info/' + id, function(d){
     if(d && d.status_code == 'ok'){
-      var isExam = false
       switch (d.exam.status){
         case 2:
           // 审核中
@@ -80,20 +92,37 @@ function getExamData(id) {
       } else {
         $('.failed-desc').html('').hide()
       }
+      /* 填充照片 */
+      $('.license').attr('src', d.infoImgs.license)
+      $('.id-cord').attr('src', d.infoImgs.idcard)
+
+      $('.img-arm').attr('src', d.examImgs.uLimbs)
+      $('.img-r-body').attr('src', d.examImgs.rBody)
+      $('.img-l-body').attr('src', d.examImgs.lBody)
+
+
       renderUserInfo(d.info, d.exam)
-      renderHeight(d.examData.height)
+      renderHeight(d.examData.height, (d.info.gender == 1))
       renderArm(d.examData.arm)
       renderObstacle(d.examData.body)
       renderLeg(d.examData.leg)
-      renderEyes(d.examData.vision)
+      renderEyes(d.examData.vision, d.exam.applyType)
       renderHearing(d.examData.hearing)
       renderColor(d.examData.color)
       renderSwiperImages(d.monitorImgs)
+
+      $('#pass').on('click', function(){
+        bindReportModal(true)
+      })
+
+      $('#passnot').on('click', function(){
+        bindReportModal(false)
+      })
     }
   })
 }
 
-function initForm(isExam){
+function initForm(){
   $('.init-clear').html('')
   $('.init-active').removeClass('active')
   $('.exam-item').removeClass('warn')
@@ -120,7 +149,7 @@ function renderUserInfo(info, exam){
   /* 填充申请人信息 */
   $('#userName').html(info.name)
   $('#userSex').html(info.genderName)
-  $('#userBirth').html(info.birthDate)
+  $('#userBirth').html(formatTs(info.birthDate))
   /* 填充疾病申告 */
   if(exam.mdHistory) {
     $('.illness-state-has').addClass('active')
@@ -134,9 +163,14 @@ function renderUserInfo(info, exam){
   }
 }
 
-function renderHeight(height){
+function renderHeight(height, isMan){
   $('.exam-height .value input').val(height)
   $('.exam-height .value.exam-success').html(height)
+  if(isExam){
+    if(height <= 150 || ((isMan && height >= 185) || (!isMan && height >= 175))){
+      $('.exam-height').parents('.exam-item').addClass('warn')
+    }
+  }
 }
 
 function renderArm(arm){
@@ -145,11 +179,22 @@ function renderArm(arm){
 
   $('.exam-arm-right select').val(arm.right)
   $('.exam-arm-right .exam-success').html($('.exam-arm-right').parents('.info-desc').data('o')[arm.right])
+
+  if(isExam){
+    if(!(arm.left == 1 && arm.right == 1)){
+      $('.exam-arm').parents('.exam-item').addClass('warn')
+    }
+  }
 }
 
 function renderObstacle(obstacle){
   $('.exam-obstacle select').val(obstacle)
   $('.exam-obstacle .item_' + obstacle).addClass('active')
+  if(isExam){
+    if(obstacle != 1){
+      $('.exam-obstacle').parents('.exam-item').addClass('warn')
+    }
+  }
 }
 
 function renderLeg(leg) {
@@ -158,9 +203,14 @@ function renderLeg(leg) {
 
   $('.exam-leg-right select').val(leg.right)
   $('.exam-leg-right .exam-success').html($('.exam-leg-right').parents('.info-desc').data('o')[leg.right])
+  if(isExam){
+    if(!(leg.left == 1 && leg.right == 1)){
+      $('.exam-leg').parents('.exam-item').addClass('warn')
+    }
+  }
 }
 
-function renderEyes(eye){
+function renderEyes(eye, applyType){
   $('.exam-eye-left').html(eye.left.value)
   $('.exam-eye-right').html(eye.right.value)
 
@@ -169,6 +219,19 @@ function renderEyes(eye){
 
   $('.exam-correct-right select').val(eye.right.correct)
   $('.exam-correct-right .item_' + eye.right.correct).addClass('active')
+
+  if(isExam){
+    if(/A1|A2|A3|B1|B2|N|P/.test(applyType)){
+      console.log('===')
+      if(eye.left.value < 5 || eye.right.value < 5){
+        $('.exam-eye').parents('.exam-item').addClass('warn')
+      }
+    } else {
+      if(eye.left.value < 4.9 || eye.right.value < 4.9){
+        $('.exam-eye').parents('.exam-item').addClass('warn')
+      }
+    }
+  }
 }
 
 function renderHearing(hearing){
@@ -177,10 +240,21 @@ function renderHearing(hearing){
 
   $('.exam-aid select').val(hearing.aid)
   $('.exam-aid .item_' + hearing.aid).addClass('active')
+
+  if(isExam){
+    if(!(hearing.left == 1 && hearing.right == 1)){
+      $('.exam-aid').parents('.exam-item').addClass('warn')
+    }
+  }
 }
 
 function renderColor(color){
   $('.exam-color .item_' + color).addClass('active')
+  if(isExam){
+    if(color != 1){
+      $('.exam-color').parents('.exam-item').addClass('warn')
+    }
+  }
 }
 
 function renderSwiperImages(monitorImgs){
@@ -204,13 +278,53 @@ function renderSwiperImages(monitorImgs){
           '</div>'
         )
         item.on('click', function(){
-          // showImage(img)
-          console.log(img)
+          showImage(img)
         })
         $(ele).append(item)
       })
     } else {
       $(ele).parents('.swiper-scroll').hide()
     }
+  })
+}
+
+function formatTs(ts){
+  var t = new Date(ts)
+  return t.getFullYear() + '年' +
+    (t.getMonth() + 1) + '月' +
+    t.getDate() + '日'
+}
+
+function bindReportModal(isPass){
+  var modal = $('.report-modal')
+  if(isPass){
+    $('.modal-content', modal).empty().append('<textarea class="form-control" rows="3" placeholder="请输入备注"></textarea>')
+  } else {
+    $('.modal-content', modal).empty().append('<textarea class="form-control" rows="3" placeholder="请输入审核不通过的原因"></textarea>')
+  }
+  modal.addClass('show')
+  setTimeout(function(){
+    modal.addClass('fade')
+  }, 10)
+  $('.close', modal).on('click', function(){
+    modal.removeClass('fade')
+    setTimeout(function(){
+      modal.removeClass('show')
+    }, 300)
+  })
+}
+
+function showImage(img){
+  var modal = $('.image-modal')
+  $('.image-container', modal).empty().append('<img src="' + img + '">')
+  modal.addClass('show')
+  setTimeout(function(){
+    modal.addClass('fade')
+  }, 10)
+  $('.img-close').on('click', function(){
+    modal.removeClass('fade')
+    setTimeout(function(){
+      modal.removeClass('show')
+    }, 300)
   })
 }

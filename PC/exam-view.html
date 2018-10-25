@@ -17,7 +17,7 @@
           <div class="info-desc exam-height">
             <span class="label has-form">身高:</span>
             <div class="value form-inline before-exam">
-              <input type="text" value="" class="form-control">
+              <input type="text" value="" class="form-control input-height">
             </div>
             <div class="value form-inline init-clear exam-success">123</div>
             <span class="has-form">厘米</span>
@@ -52,7 +52,7 @@
               </div>
             </div>
             <div class="image-box">
-              <img src="img/nature1.jpg">
+              <img src="" class="img-arm">
             </div>
           </div>
         </div>
@@ -75,12 +75,12 @@
             <div class="row">
               <div class="half-col">
                 <div class="image-box">
-                  <img src="img/nature1.jpg">
+                  <img src="" class="img-r-body">
                 </div>
               </div>
               <div class="half-col">
                 <div class="image-box">
-                  <img src="img/nature1.jpg">
+                  <img src="" class="img-l-body">
                 </div>
               </div>
             </div>
@@ -90,7 +90,7 @@
 
       <div class="exam-item">
         <div class="title">下肢</div>
-        <div class="info-box">
+        <div class="info-box exam-leg">
           <div class="info-desc">
             <span class="label has-form">左下肢:</span>
             <div class="value form-inline exam-leg-left">
@@ -117,7 +117,7 @@
 
       <div class="exam-item">
         <div class="title">视力</div>
-        <div class="info-box">
+        <div class="info-box exam-eye">
           <div class="info-group">
             <div class="info-desc">
               <span class="label">左眼:</span>
@@ -232,11 +232,11 @@
 
       <div class="row photo-container">
         <div class="half-col">
-          <img src="./test/avatar.jpg" class="photo">
+          <img src="" class="photo id-cord">
           <p class="desc">证件照</p>
         </div>
         <div class="half-col">
-          <img src="./test/avatar.jpg" class="photo">
+          <img src="" class="photo license">
           <p class="desc">驾驶证照片</p>
         </div>
       </div>
@@ -314,13 +314,35 @@
   <div class="bottom-action-panel">
     <div class="bottom-action-container">
       <div class="action-bar exam-action">
-        <div class="btn btn-primary">通过</div>
-        <div class="btn btn-primary">不通过</div>
+        <div class="btn btn-primary" id="pass">通过</div>
+        <div class="btn btn-primary" id="passnot">不通过</div>
       </div>
       <div class="action-bar user-action">
         <div class="btn btn-gray">过程监控视频</div>
       </div>
     </div>
+  </div>
+  <div class="modal-container report-modal">
+    <div class="modal-bg"></div>
+    <div class="modal-panel">
+      <div class="title">确认...?</div>
+      <div class="modal-body">
+        <div class="modal-content">
+
+        </div>
+        <div class="warn-info"></div>
+      </div>
+      <div class="modal-footer">
+        <div class="btn btn-primary post-">确认并继续审核</div>
+        <div class="btn btn-primary">确认并退出审核</div>
+        <div class="btn btn-gray close">取消</div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-container image-modal">
+    <div class="modal-bg"></div>
+    <div class="image-container"></div>
+    <img src="images/close.png" class="img-close">
   </div>
   <div class="cover bottom-cover"></div>
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
