@@ -223,7 +223,7 @@
         状态不通过：使用examination-failed图片
         -->
         <img src="images/examination-success.png" class="examination-status state_3" style="display: none;">
-        <img src="images/examination-success.png" class="examination-status state_4" style="display: none;">
+        <img src="images/examination-failed.png" class="examination-status state_4" style="display: none;">
         <!--
         状态为"不通过"才显示
         -->
@@ -318,7 +318,7 @@
         <div class="btn btn-primary" id="passnot">不通过</div>
       </div>
       <div class="action-bar user-action">
-        <div class="btn btn-gray">过程监控视频</div>
+        <div class="btn btn-gray" id="openVideo">过程监控视频</div>
       </div>
     </div>
   </div>
@@ -333,8 +333,8 @@
         <div class="warn-info"></div>
       </div>
       <div class="modal-footer">
-        <div class="btn btn-primary post-">确认并继续审核</div>
-        <div class="btn btn-primary">确认并退出审核</div>
+        <div class="btn btn-primary post-continue">确认并继续审核</div>
+        <div class="btn btn-primary post-back">确认并退出审核</div>
         <div class="btn btn-gray close">取消</div>
       </div>
     </div>
@@ -344,7 +344,26 @@
     <div class="image-container"></div>
     <img src="images/close.png" class="img-close">
   </div>
+  <div class="modal-container video-modal">
+    <div class="modal-bg"></div>
+    <div class="video-container">
+      <video src="" controls="controls" id="mainVideo"></video>
+      <div class="video-list-container">
+        <div class="list-title">体检环节</div>
+        <div class="video-list">
+          <div class="list-item" data-target="height" data-time="0">身高检查</div>
+          <div class="list-item" data-target="color" data-time="0">辨色力检查</div>
+          <div class="list-item" data-target="vision" data-time="0">视力检查</div>
+          <div class="list-item" data-target="hearing" data-time="0">听力检查</div>
+          <div class="list-item" data-target="uLimbs" data-time="0">上肢检查</div>
+          <div class="list-item" data-target="body" data-time="0">躯干和颈部检查</div>
+          <div class="list-item" data-target="lLimbs" data-time="0">下肢检查</div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="cover bottom-cover"></div>
+  <div class='readOnly' style='display:none'></div>
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <script src="exam-view.js"></script>
 </body>

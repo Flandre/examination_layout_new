@@ -1,4 +1,4 @@
-var listPage =  $('.exam-list'), detailPage = $('.exam-page'), isExam = false, readOnly = 'audit'
+var listPage =  $('.exam-list'), detailPage = $('.exam-page'), isExam = false, readOnly = 'audit', isPass = false, postObj = {}
 
 $(document).ready(function(){
 
@@ -51,6 +51,17 @@ $(document).ready(function(){
 
   $('.img-l-body').on('click', function(){
     showImage($('.img-l-body').attr('src'))
+  })
+
+  /* 提交部分 */
+  $('.post-continue').on('click', function(){
+    postObj.feedback = $('.feedback-container').val()
+    postData(true)
+  })
+
+  $('.post-back').on('click', function(){
+    postObj.feedback = $('.feedback-container').val()
+    postData(false)
   })
 })
 
@@ -216,11 +227,13 @@ function getExamData(id) {
       renderSwiperImages(d.monitorImgs)
 
       $('#pass').on('click', function(){
-        bindReportModal(true)
+        isPass = true
+        bindReportModal(d.exam.id)
       })
 
       $('#passnot').on('click', function(){
-        bindReportModal(false)
+        isPass = false
+        bindReportModal(d.exam.id)
       })
     }
   })
@@ -399,12 +412,21 @@ function formatTs(ts){
     t.getDate() + '日'
 }
 
-function bindReportModal(isPass){
+function bindReportModal(examId){
   var modal = $('.report-modal')
+  $('.warn-info').html('')
   if(isPass){
-    $('.modal-content', modal).empty().append('<textarea class="form-control" rows="3" placeholder="请输入备注"></textarea>')
+    $('.modal-content', modal).empty().append('<textarea class="form-control feedback-container" rows="3" placeholder="请输入备注"></textarea>')
   } else {
-    $('.modal-content', modal).empty().append('<textarea class="form-control" rows="3" placeholder="请输入审核不通过的原因"></textarea>')
+    $('.modal-content', modal).empty().append('<textarea class="form-control feedback-container" rows="3" placeholder="请输入审核不通过的原因"></textarea>')
+  }
+  postObj = {
+    id: examId,
+    status: isPass ? 3 : 4,
+    uLimbs: $('#lArm').val() + ',' + $('#rArm').val(),
+    body: $('#obstacle').val(),
+    lLimbs: $('#lLeg').val() + ',' + $('#rLeg').val(),
+    correction: $('#lCorrect').val() + ',' + $('#rCorrect').val() + ',' + $('#aid').val()
   }
   modal.addClass('show')
   setTimeout(function(){
@@ -431,4 +453,36 @@ function showImage(img){
       modal.removeClass('show')
     }, 300)
   })
+}
+
+function postData(isContinue) {
+  postObj.nextAudit = isContinue ? 1 : 0
+  console.log(postObj)
+  $.post('/admin/home/audit/examination/audit', postObj, function(d){
+    if(d && d.status_code == 'ok'){
+      if(isContinue) {
+        if(d.examId) {
+          window.location = '/admin/home/audit/examination/viewer?examId=' + d.examId
+        } else {
+          alert('已无更多需审核的体检记录！')
+          window.location.reload()
+        }
+      } else {
+        window.close()
+      }
+    } else {
+      var err_inf = {
+        'err_height':'根据《机动车驾驶证申领和使用规定》规定，申请大型客车、牵引车、城市公交车、大型货车、无轨电车准驾车型的，身高为155厘米以上。申请中型客车准驾车型的，身高为150厘米以上。请重新确认和审核体检数据。',
+        'err_vision':'根据《机动车驾驶证申领和使用规定》规定，申请大型客车、牵引车、城市公交车、中型客车、大型货车、无轨电车或者有轨电车准驾车型的，两眼裸视力或者矫正视力达到对数视力表5.0以上。申请其他准驾车型的，两眼裸视力或者矫正视力达到对数视力表4.9以上。请重新确认和审核体检数据。',
+        'err_color':'根据《机动车驾驶证申领和使用规定》规定，申请驾驶证需无红绿色盲。请重新确认和审核体检数据。',
+        'err_hearing':'根据《机动车驾驶证申领和使用规定》规定，申请驾驶证需两耳分别距音叉50厘米能辨别声源方向。有听力障碍但佩戴助听设备能够达到以上条件的，可以申请小型汽车、小型自动挡汽车准驾车型的机动车驾驶证。请重新确认和审核体检数据。',
+        'err_uLimbs':'根据《机动车驾驶证申领和使用规定》规定，双手拇指健全，每只手其他手指必须有三指健全，肢体和手指运动功能正常。但手指末节残缺或者左手有三指健全，且双手手掌完整的，可以申请小型汽车、小型自动挡汽车、低速载货汽车、三轮汽车准驾车型的机动车驾驶证。请重新确认和审核体检数据。',
+        'err_lLimbs':'根据《机动车驾驶证申领和使用规定》规定，双下肢健全且运动功能正常，不等长度不得大于5厘米。但左下肢缺失或者丧失运动功能的，可以申请小型自动挡汽车准驾车型的机动车驾驶证。请重新确认和审核体检数据。',
+        'err_body':'根据《机动车驾驶证申领和使用规定》规定，申请驾驶证需躯干、颈部无运动功能障碍。请重新确认和审核体检数据。',
+        'err_mdHistory':'根据《机动车驾驶证申领和使用规定》规定，体检记录中有不符合要求的情形。请重新确认和审核体检数据。'
+      }
+      var errMsg = err_inf[d.status_code] || '出现未知错误,不能提交.'
+      $('.warn-info').html(errMsg)
+    }
+  }, 'json')
 }

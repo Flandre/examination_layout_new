@@ -58,8 +58,8 @@ body {
   border-radius: 4px;
   &.btn-primary {
     color: #fff;
-    background-color: #00A2FF;
-    border-color: #00A2FF;
+    background-color: #45a4f7;
+    border-color: #45a4f7;
   }
   &.btn-gray {
     color: #fff;
@@ -81,7 +81,7 @@ body {
   box-shadow: none;
   -webkit-appearance: none;
   &:focus {
-    border-color: #5bb6fa;
+    border-color: #45a4f7;
     outline: 0;
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(91,182,250,.6);
   }
@@ -111,7 +111,7 @@ textarea.form-control {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, .3);
+    background: rgba(0, 0, 0, .6);
     z-index: 1200;
     transition: 300ms;
     opacity: 0;
@@ -170,6 +170,48 @@ textarea.form-control {
     z-index: 1220;
     display: none;
   }
+  .video-container {
+    display: none;
+    opacity: 0;
+    width: 1140px;
+    height: auto;
+    position: fixed;
+    z-index: 1210;
+    top: 50px;
+    left: 50%;
+    margin-left: -570px;
+    background: #DCDCDC;
+    overflow: hidden;
+    #mainVideo {
+      width: 940px;
+      height: 530px;
+      float: left;
+      background: #000;
+    }
+    .video-list-container {
+      width: 200px;
+      height: auto;
+      float: right;
+      .list-title {
+        line-height: 40px;
+        text-align: center;
+        background: #C5C5C5;
+        font-weight: bold;
+      }
+      .video-list {
+        .list-item {
+          cursor: pointer;
+          padding: 0 30px;
+          line-height: 40px;
+          border-bottom: 1px solid #C5C5C5;
+          &:hover {
+            background: #45a4f7;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
   &.show {
     .modal-bg {
       display: block;
@@ -183,6 +225,9 @@ textarea.form-control {
     .img-close {
       display: block;
     }
+    .video-container {
+      display: block;
+    }
     &.fade {
       .modal-bg {
         opacity: 1;
@@ -191,6 +236,9 @@ textarea.form-control {
         opacity: 1;
       }
       .image-container {
+        opacity: 1;
+      }
+      .video-container {
         opacity: 1;
       }
     }

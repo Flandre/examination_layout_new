@@ -175,13 +175,13 @@ var examData = {
   "examId": 10,
   "adminId": 6,
   "keyFrameMap": {
-    "height": 1511111115,
-    "lLimbs": 1511111116,
-    "hearing": 1511111123,
-    "uLimbs": 1511111145,
-    "body": 1511111167,
-    "color": 1511111254,
-    "vision": 1511111964
+    "height": 10,
+    "lLimbs": 20,
+    "hearing": 30,
+    "uLimbs": 40,
+    "body": 50,
+    "color": 60,
+    "vision": 70
   },
   "infoImgs": {
     "license": "./img/nature5.jpg",
@@ -216,6 +216,36 @@ var examData = {
     "updateTimeStamp": 1539655812858
   }
 }
+var videoData = {
+  "status_code":"ok",
+  // "playUrl":"http://vjs.zencdn.net/v/oceans.mp4",
+  "message":"找不到该体检记录对应的视频资源"
+}
+var list = {
+  "status_code":"ok",
+  "message":[
+    {
+      "applyType":"C1",
+      "infoName":"测试三",
+      "createTime":"2018-08-01 10:24",
+      "examId":"0003",
+      "statusName":"待审核",
+      "lock":true,
+      "id":4,
+      "status":2
+    },
+    {
+      "applyType":"C1",
+      "infoName":"测试三",
+      "createTime":"2018-08-01 10:24",
+      "examId":"0003",
+      "statusName":"待审核",
+      "lock":true,
+      "id":4,
+      "status":2
+    },
+    ]
+}
 
 app.get('/admin/home/audit/examination/options', (req, res) => {
   res.set("Access-Control-Allow-Origin", "*")
@@ -225,4 +255,14 @@ app.get('/admin/home/audit/examination/options', (req, res) => {
 app.get('/admin/home/audit/examination/info/4', (req, res) => {
   res.set("Access-Control-Allow-Origin", "*")
   res.send(examData)
+})
+
+app.get('/admin/home/audit/examination/play/preview/10', (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*")
+  res.send(videoData)
+})
+
+app.get('/admin/home/audit/examination/list/0/100?state=wait', (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*")
+  res.send(list)
 })
