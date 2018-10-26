@@ -1,7 +1,8 @@
-var listPage =  $('.exam-list'), detailPage = $('.exam-page'), isExam = false, readOnly = 'audit', isPass = false, postObj = {}
+var listPage =  $('.exam-list'), detailPage = $('.exam-page'), videoPage = $('.video-page'),
+  isExam = false, readOnly = 'audit', isPass = false, postObj = {}, videoReady = false
 
 $(document).ready(function(){
-
+  // readOnly = $('.readOnly').html()
   var query = {}, idx = (window.location + '').indexOf('?')
 
   if(idx != -1){
@@ -37,7 +38,6 @@ $(document).ready(function(){
         renderOptions(id, arr)
       })
       renderList()
-      getExamData(4)
     }
   })
 
@@ -63,11 +63,32 @@ $(document).ready(function(){
     postObj.feedback = $('.feedback-container').val()
     postData(false)
   })
+
+  /* 视频跳转逻辑 */
+  var video = $('#mainVideo')[0]
+  $.each($('.video-list .list-item'), function(index, ele) {
+    $(ele).on('click', function(){
+      video.currentTime = $(ele).attr('data-time')
+    })
+  })
+
+  $('.open-video').on('click', function(){
+    if(videoReady) {
+      videoPage.show()
+      $('#mainVideo')[0].play()
+    } else {
+      alert('找不到该体检记录对应的视频资源')
+    }
+  })
+  $('.back', videoPage).on('click', function(){
+    $('#mainVideo')[0].pause()
+    videoPage.hide()
+  })
 })
 
 function renderList() {
-  var currentUserId, listCount = $('.count', listPage), listContainer = $('.list-container', listPage)
-  $.getJSON('/admin/home/audit/examination/list/0/100?state=wait', function(d){
+  var currentUserId, listCount = $('.count span', listPage), listContainer = $('.list-container', listPage)
+  $.getJSON('http://127.0.0.1:8233/admin/home/audit/examination/list/0/100?state=wait', function(d){
     if(d.status_code == 'ok' && d.message) {
       listContainer.empty()
       listCount.html(d.message.length)
@@ -113,11 +134,7 @@ function renderDetail(examId) {
   back.on('click', function(){
     renderList()
   })
-  detailPage.empty()
-    .append('<h2>当前显示ID为' + examId + '的页面</h2>')
-    .append(back)
-  listPage.hide()
-  detailPage.show()
+  getExamData(examId)
 }
 
 function concatCarType(str){
@@ -183,6 +200,7 @@ function getExamData(id) {
     if(d && d.status_code == 'ok'){
       switch (d.exam.status){
         case 2:
+        case 5:
           // 审核中
           $('.state_3').hide()
           $('.state_4').hide()
@@ -235,6 +253,20 @@ function getExamData(id) {
         isPass = false
         bindReportModal(d.exam.id)
       })
+      /* 渲染视频 */
+      videoReady = false
+      $.getJSON('http://127.0.0.1:8233/admin/home/audit/examination/play/preview/' + d.exam.id, function(d){
+        if(d.status_code == 'ok' && d.playUrl) {
+          $('#mainVideo').attr('src', d.playUrl)
+          videoReady = true
+        }
+      })
+      $.each($('.video-list .list-item'), function(index, ele) {
+        $(ele).attr('data-time', d.keyFrameMap[$(ele).attr('data-target')])
+      })
+
+      listPage.hide()
+      detailPage.show()
     }
   })
 }
@@ -243,8 +275,12 @@ function initForm(){
   $('.init-clear').html('')
   $('.init-active').removeClass('active')
   $('.exam-item').removeClass('warn')
-  // $('.swiper-scroll-container').empty()
-  // $('.swiper-scroll-container').parents('.swiper-container').show()
+
+  $('.swiper-scroll-container').empty()
+  $('.swiper-scroll-container').parents('.swiper-container').show()
+
+  $('.modal-container').removeClass('show')
+  $('.modal-container').removeClass('fade')
 
   if(isExam){
     $('.before-exam').show()
@@ -426,7 +462,8 @@ function bindReportModal(examId){
     uLimbs: $('#lArm').val() + ',' + $('#rArm').val(),
     body: $('#obstacle').val(),
     lLimbs: $('#lLeg').val() + ',' + $('#rLeg').val(),
-    correction: $('#lCorrect').val() + ',' + $('#rCorrect').val() + ',' + $('#aid').val()
+    correction: $('#lCorrect').val() + ',' + $('#rCorrect').val() + ',' + $('#aid').val(),
+    height: $('.input-height').val()
   }
   modal.addClass('show')
   setTimeout(function(){
@@ -462,13 +499,13 @@ function postData(isContinue) {
     if(d && d.status_code == 'ok'){
       if(isContinue) {
         if(d.examId) {
-          window.location = '/admin/home/audit/examination/viewer?examId=' + d.examId
+          getExamData(d.examId)
         } else {
           alert('已无更多需审核的体检记录！')
           window.location.reload()
         }
       } else {
-        window.close()
+        window.location.reload()
       }
     } else {
       var err_inf = {

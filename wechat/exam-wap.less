@@ -29,6 +29,60 @@ body {
     color: #E4E4E4;
   }
 }
+
+
+.exam-list {
+  padding: 20px 15px;
+  h2{
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 15px;
+  }
+  .count{
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 10px;
+    span{
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+  .list-container {
+    .list-item{
+      padding: 15px;
+      border: 1px solid #EDEDED;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+      margin-bottom: 20px;
+      border-radius: 3px;
+      .exam-info{
+        padding-bottom: 10px;
+        border-bottom: 1px solid #EAEAEA;
+        .info-item{
+          font-size: 14px;
+          line-height: 26px;
+          .name{
+            width: 60px;
+            margin-right: 10px;
+          }
+        }
+      }
+      .car-type{
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        .title{
+          font-size: 14px;
+          line-height: 28px;
+        }
+        .desc{
+          font-size: 14px;
+          line-height: 28px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
 .exam-page {
   background: #e8e8e8;
   .row {
@@ -343,59 +397,6 @@ body {
     }
   }
 
-  .exam-list {
-    padding: 20px 15px;
-    h2{
-      font-size: 24px;
-      line-height: 1;
-      margin-bottom: 15px;
-    }
-    .count{
-      font-size: 14px;
-      line-height: 22px;
-      margin-bottom: 10px;
-      span{
-        margin-left: 5px;
-        margin-right: 5px;
-      }
-    }
-    .list-container {
-      .list-item{
-        padding: 15px;
-        border: 1px solid #EDEDED;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
-        margin-bottom: 20px;
-        border-radius: 3px;
-        .exam-info{
-          padding-bottom: 10px;
-          border-bottom: 1px solid #EAEAEA;
-          .info-item{
-            font-size: 14px;
-            line-height: 26px;
-            .name{
-              width: 60px;
-              margin-right: 10px;
-            }
-          }
-          .car-type{
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            .title{
-              font-size: 14px;
-              line-height: 28px;
-            }
-            .desc{
-              font-size: 14px;
-              line-height: 28px;
-              font-weight: bold;
-            }
-          }
-        }
-      }
-    }
-  }
-
   .exam-container {
     padding: 15px;
     background: #fff;
@@ -585,6 +586,94 @@ body {
     padding: 10px 15px;
     .btn {
       display: block;
+    }
+  }
+
+  .open-video {
+    width: 44px;
+    height: 44px;
+    position: fixed;
+    top: 20px;
+    right: 15px;
+    background: #A4B2C3;
+    border-radius: 5px;
+    padding: 10px;
+    img {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+  }
+}
+
+.video-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 2000;
+  .top-nav {
+    width: 100%;
+    height: 46px;
+    line-height: 46px;
+    font-size: 16px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid #dbdbdb;
+    z-index: 2020;
+    background: #fff;
+    .back {
+      height: 46px;
+      width: 46px;
+      position: absolute;
+      padding: 15px;
+      img {
+        width: 16px;
+        height: 16px;
+        transform: rotate(90deg);
+        display: block;
+      }
+
+    }
+  }
+  #mainVideo {
+    position: absolute;
+    top: 46px;
+    width: 100%;
+    height: 220px;
+    background: #000;
+    z-index: 2020;
+  }
+  .video-list-container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    padding-top: 266px;
+    z-index: 2010;
+    overflow: scroll;
+    .list-title {
+      font-size: 16px;
+      line-height: 40px;
+      padding: 0 15px;
+      background: #EDEDED;
+      font-weight: bold;
+    }
+    .video-list {
+      .list-item {
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 40px;
+        padding: 0 15px;
+        border-bottom: 1px solid #EDEDED;
+        &:hover {
+          background: #45a4f7;
+          color: #fff;
+        }
+      }
     }
   }
 }

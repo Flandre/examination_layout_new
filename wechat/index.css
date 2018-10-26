@@ -1,1 +1,81 @@
-
+* {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	color: #333;
+	font-family: 'Microsoft YaHei', sans-serif;
+}
+a {
+	text-decoration: none;
+}
+body {
+	background: #fff;
+}
+.btn {
+	color: #fff;
+	background: #00A2FF;
+	padding: 0 15px;
+	font-size: 18px;
+	line-height: 40px;
+	border-radius: 3px;
+	display: inline-block;
+	text-align: center;
+}
+.btn.btn-block {
+	display: block;
+}
+.btn.disabled {
+	background: #BBBCC1;
+	color: #E4E4E4;
+}
+.exam-list {
+	padding: 20px 15px;
+}
+.exam-list h2{
+	font-size: 24px;
+	line-height: 1;
+	margin-bottom: 15px;
+}
+.exam-list .count{
+	font-size: 14px;
+	line-height: 22px;
+	margin-bottom: 10px;
+}
+.exam-list .count span{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.exam-list .list-container .list-item{
+	padding: 15px;
+	border: 1px solid #EDEDED;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+	margin-bottom: 20px;
+	border-radius: 3px;
+}
+.exam-list .list-container .list-item .exam-info{
+	padding-bottom: 10px;
+	border-bottom: 1px solid #EAEAEA;
+}
+.exam-list .list-container .list-item .exam-info .info-item{
+	font-size: 14px;
+	line-height: 26px;
+}
+.exam-list .list-container .list-item .exam-info .info-item .name{
+	width: 60px;
+	margin-right: 10px;
+}
+.exam-list .list-container .list-item .car-type{
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+.exam-list .list-container .list-item .car-type .title{
+	font-size: 14px;
+	line-height: 28px;
+}
+.exam-list .list-container .list-item .car-type .desc{
+	font-size: 14px;
+	line-height: 28px;
+	font-weight: bold;
+}

@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0">
   <title>审核页面</title>
-  <link href="index.css" rel="stylesheet">
   <link href="exam-wap.css" rel="stylesheet">
 </head>
 <body>
@@ -13,51 +12,11 @@
     <h2>待审核的体检记录</h2>
     <div class="count">共有<span>0</span>条记录</div>
     <div class="list-container">
-      <!--div class="list-item">
-
-        <div class="exam-info">
-          <div class="info-item">
-            <span class="name">体检编号:</span>
-            <span class="value">0022</span>
-          </div>
-          <div class="info-item">
-            <span class="name">建立时间:</span>
-            <span class="value">2018-10-17 10:24</span>
-          </div>
-        </div>
-
-        <div class="car-type">
-          <div class="title">申请/已有的准驾车型</div>
-          <div class="desc">C1小型汽车/A1大型货车</div>
-        </div>
-
-        <a class="btn btn-block action-bar" href="javascript:;">开始审核</a>
-      </div>
-      <div class="list-item">
-
-        <div class="exam-info">
-          <div class="info-item">
-            <span class="name">体检编号:</span>
-            <span class="value">0022</span>
-          </div>
-          <div class="info-item">
-            <span class="name">建立时间:</span>
-            <span class="value">2018-10-17 10:24</span>
-          </div>
-        </div>
-
-        <div class="car-type">
-          <div class="title">申请/已有的准驾车型</div>
-          <div class="desc">C1小型汽车/A1大型货车</div>
-        </div>
-
-        <a class="btn btn-block disabled action-bar" href="javascript:;">已锁定</a>
-      </div-->
     </div>
   </div>
 
 <!--审核详情页-->
-  <div class="exam-page">
+  <div class="exam-page" style="display:none;">
 
 
     <div class="top-panel">
@@ -372,13 +331,6 @@
         </div>
       </div>
     </div>
-    <!--<div class="bottom-action-panel">-->
-      <!--<div class="bottom-action-container">-->
-        <!--<div class="action-bar user-action">-->
-          <!--<div class="btn btn-gray">过程监控视频</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
 
     <div class="modal-container report-modal">
       <div class="modal-bg"></div>
@@ -402,7 +354,34 @@
       <div class="image-container"></div>
       <img src="images/close.png" class="img-close">
     </div>
+
+    <div class="open-video">
+      <img src="./images/video-icon.png">
+    </div>
   </div>
+  <div class="video-page" style="display: none;">
+    <div class="top-nav">
+      <div class="back">
+        <img src="./images/arrow.png">
+      </div>
+      <span>监控视频</span>
+    </div>
+    <video src="" controls="controls" id="mainVideo"></video>
+    <div class="video-list-container">
+      <div class="list-title">体检环节</div>
+      <div class="video-list">
+        <div class="list-item" data-target="height" data-time="0">身高检查</div>
+        <div class="list-item" data-target="color" data-time="0">辨色力检查</div>
+        <div class="list-item" data-target="vision" data-time="0">视力检查</div>
+        <div class="list-item" data-target="hearing" data-time="0">听力检查</div>
+        <div class="list-item" data-target="uLimbs" data-time="0">上肢检查</div>
+        <div class="list-item" data-target="body" data-time="0">躯干和颈部检查</div>
+        <div class="list-item" data-target="lLimbs" data-time="0">下肢检查</div>
+      </div>
+    </div>
+  </div>
+
+  <div class='readOnly' style='display:none'></div>
 
 </body>
 

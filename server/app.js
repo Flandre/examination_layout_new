@@ -218,8 +218,8 @@ var examData = {
 }
 var videoData = {
   "status_code":"ok",
-  // "playUrl":"http://vjs.zencdn.net/v/oceans.mp4",
-  "message":"找不到该体检记录对应的视频资源"
+  "playUrl":"http://vjs.zencdn.net/v/oceans.mp4",
+  // "message":"找不到该体检记录对应的视频资源"
 }
 var list = {
   "status_code":"ok",
@@ -262,7 +262,7 @@ app.get('/admin/home/audit/examination/play/preview/10', (req, res) => {
   res.send(videoData)
 })
 
-app.get('/admin/home/audit/examination/list/0/100?state=wait', (req, res) => {
+app.get('/admin/home/audit/examination/list/0/100', (req, res) => {
   res.set("Access-Control-Allow-Origin", "*")
   res.send(list)
 })
