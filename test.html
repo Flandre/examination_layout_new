@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<button>click!</button>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('button').on('click', function(){
+      console.log('=== click ====')
+      location.href = location.href + "?test=1"
+    })
+  })
+</script>
+
+</body>
+</html>
