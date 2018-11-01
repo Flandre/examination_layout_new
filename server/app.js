@@ -224,26 +224,26 @@ var videoData = {
 var list = {
   "status_code":"ok",
   "message":[
-    {
-      "applyType":"C1",
-      "infoName":"测试三",
-      "createTime":"2018-08-01 10:24",
-      "examId":"0003",
-      "statusName":"待审核",
-      "lock":true,
-      "id":4,
-      "status":2
-    },
-    {
-      "applyType":"C1",
-      "infoName":"测试三",
-      "createTime":"2018-08-01 10:24",
-      "examId":"0003",
-      "statusName":"待审核",
-      "lock":true,
-      "id":4,
-      "status":2
-    },
+    // {
+    //   "applyType":"C1",
+    //   "infoName":"测试三",
+    //   "createTime":"2018-08-01 10:24",
+    //   "examId":"0003",
+    //   "statusName":"待审核",
+    //   "lock":true,
+    //   "id":4,
+    //   "status":2
+    // },
+    // {
+    //   "applyType":"C1",
+    //   "infoName":"测试三",
+    //   "createTime":"2018-08-01 10:24",
+    //   "examId":"0003",
+    //   "statusName":"待审核",
+    //   "lock":true,
+    //   "id":4,
+    //   "status":2
+    // },
     ]
 }
 

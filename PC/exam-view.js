@@ -102,7 +102,7 @@ function renderOptions(id, arr){
 }
 
 function getExamData(id) {
-  $.getJSON('/admin/home/' + readOnly + '/examination/info/' + id, function(d){
+  $.getJSON('//127.0.0.1:8233/admin/home/' + readOnly + '/examination/info/' + id, function(d){
     if(d && d.status_code == 'ok'){
       switch (d.exam.status){
         case 2:
@@ -110,7 +110,11 @@ function getExamData(id) {
           // 审核中
           $('.state_3').hide()
           $('.state_4').hide()
-          isExam = true
+          if(readOnly == 'admin'){
+            isExam = true
+          } else {
+            isExam = false
+          }
           break
         case 3:
           // 通过
@@ -161,7 +165,7 @@ function getExamData(id) {
       })
       /* 渲染视频 */
       videoReady = false
-      $.getJSON('/admin/home/audit/examination/play/preview/' + d.exam.id, function(d){
+      $.getJSON('//127.0.0.1:8233/admin/home/audit/examination/play/preview/' + d.exam.id, function(d){
         if(d.status_code == 'ok' && d.playUrl) {
           $('#mainVideo').attr('src', d.playUrl)
           videoReady = true
@@ -398,7 +402,7 @@ function showImage(img){
 function postData(isContinue) {
   postObj.nextAudit = isContinue ? 1 : 0
   console.log(postObj)
-  $.post('/admin/home/audit/examination/audit', postObj, function(d){
+  $.post('//127.0.0.1:8233/admin/home/audit/examination/audit', postObj, function(d){
     if(d && d.status_code == 'ok'){
       if(isContinue) {
         if(d.examId) {

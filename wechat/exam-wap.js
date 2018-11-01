@@ -89,42 +89,48 @@ $(document).ready(function(){
 function renderList() {
   var currentUserId, listCount = $('.count span', listPage), listContainer = $('.list-container', listPage)
   $.getJSON('http://127.0.0.1:8233/admin/home/audit/examination/list/0/100?state=wait', function(d){
-    if(d.status_code == 'ok' && d.message) {
-      listContainer.empty()
-      listCount.html(d.message.length)
-      d.message.forEach(function(item) {
-        var li = $('<div class="list-item"></div>')
-        li.append(
-          '<div class="exam-info">' +
-          '<div class="info-item">' +
-          '<span class="name">体检编号:</span>' +
-          '<span class="value">' + item.examId + '</span>' +
-          '</div>' +
-          '<div class="info-item">' +
-          '<span class="name">建立时间:</span>' +
-          '<span class="value">' + item.createTime + '</span>' +
-          '</div>' +
-          '</div>'
-        )
-        li.append(
-          '<div class="car-type">' +
-          '<div class="title">申请/已有的准驾车型</div>' +
-          '<div class="desc">' + concatCarType(item.applyType) + '</div>' +
-          '</div>'
-        )
-        var btn = $('<a class="btn btn-block action-bar" href="javascript:;">开始审核</a>')
-        if(!!item.locker && item.locker != currentUserId){
-          btn.addClass('disabled').html('已锁定')
-        } else {
-          btn.on('click', function(){
-            renderDetail(item.id)
-          })
-        }
-        li.append(btn)
-        listContainer.append(li)
-      })
-      listPage.show()
-      detailPage.hide()
+    if(d.status_code == 'ok') {
+      if(d.message && d.message.length){
+        listContainer.empty()
+        listCount.html(d.message.length)
+        d.message.forEach(function(item) {
+          var li = $('<div class="list-item"></div>')
+          li.append(
+            '<div class="exam-info">' +
+            '<div class="info-item">' +
+            '<span class="name">体检编号:</span>' +
+            '<span class="value">' + item.examId + '</span>' +
+            '</div>' +
+            '<div class="info-item">' +
+            '<span class="name">建立时间:</span>' +
+            '<span class="value">' + item.createTime + '</span>' +
+            '</div>' +
+            '</div>'
+          )
+          li.append(
+            '<div class="car-type">' +
+            '<div class="title">申请/已有的准驾车型</div>' +
+            '<div class="desc">' + concatCarType(item.applyType) + '</div>' +
+            '</div>'
+          )
+          var btn = $('<a class="btn btn-block action-bar" href="javascript:;">开始审核</a>')
+          if(!!item.locker && item.locker != currentUserId){
+            btn.addClass('disabled').html('已锁定')
+          } else {
+            btn.on('click', function(){
+              renderDetail(item.id)
+            })
+          }
+          li.append(btn)
+          listContainer.append(li)
+        })
+        listPage.show()
+        detailPage.hide()
+      } else {
+        listPage.empty().append('<img class="empty-icon" src="images/empty-icon.png"><p class="empty-text">暂无待审核的体检记录</p>')
+        listPage.show()
+        detailPage.hide()
+      }
     }
   })
 }
