@@ -1,6 +1,6 @@
 var isExam = false, readOnly = 'audit', isPass = false, postObj = {}, videoReady = false
 $(document).ready(function(){
-  readOnly = $('.readOnly').html()
+  // readOnly = $('.readOnly').html()
 
   var query = {}, idx = (window.location + '').indexOf('?')
   if(idx != -1){
@@ -30,13 +30,13 @@ $(document).ready(function(){
   })
 
 
-  $.getJSON('/admin/home/audit/examination/options', function(d){
+  $.getJSON('//127.0.0.1:8233/admin/home/audit/examination/options', function(d){
     if(d && d.status_code == 'ok'){
       $.each(d.message, function(id, arr){
         renderOptions(id, arr)
       })
-      getExamData(_params['examId'])
-      // getExamData(4)
+      // getExamData(_params['examId'])
+      getExamData(4)
     }
   })
 
@@ -110,7 +110,7 @@ function getExamData(id) {
           // 审核中
           $('.state_3').hide()
           $('.state_4').hide()
-          if(readOnly == 'admin'){
+          if(readOnly == 'audit'){
             isExam = true
           } else {
             isExam = false
