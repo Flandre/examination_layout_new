@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0">
+  <title>驾驶人自助体检</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #45a4f7;
+    }
+    .header {
+      text-align: center;
+      padding: 10px 0;
+    }
+    .brand .logo{
+      vertical-align: middle;
+      display: inline-block;
+      margin-right: 5px;
+      width: 40px;
+      height: 40px;
+    }
+    .brand span{
+      vertical-align: middle;
+      display: inline-block;
+      color: #fff;
+      line-height: 40px;
+    }
+    .container {
+      margin-top: 15px;
+      padding: 0 15px;
+    }
+    .container .login-panel{
+      padding: 30px 40px;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 0 10px 2px #dbdbdb;
+      margin-bottom: 20px;
+    }
+    .container .login-panel h2{
+      font-size: 18px;
+      text-align: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #efefef;
+      margin-bottom: 20px;
+    }
+    .container .login-panel .text-danger{
+      color: #d32b2b;
+      margin-bottom: 10px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label{
+      display: block;
+      max-width: 100%;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+    .form-group .form-control{
+      width: 100%;
+      height: 34px;
+      padding: 6px 12px;
+      background-color: #fff;
+      border: 1px solid #dbdbdb;
+      border-radius: 4px;
+      transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    .form-group .form-control:focus {
+      border-color: #5bb6fa;
+      outline: 0;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(91,182,250,.6);
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 10px 16px;
+      font-size: 18px;
+      line-height: 1.3333333;
+      border-radius: 6px;
+      color: #fff;
+      background-color: #45a4f7;
+      border-color: #45a4f7;
+      display: inline-block;
+      margin-bottom: 0;
+      font-weight: 400;
+      text-align: center;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">
+      <img class="logo" src="images/logo-40.png">
+      <span>驾驶人自助体检</span>
+    </div>
+  </div>
+  <div class="container">
+    <div class="login-panel">
+      <form action="" method="">
+        <h2>登录</h2>
+        <p class="text-danger">
+          错误信息错误信息错误信息错误信息错误信息错误信息错误信息错误信息错误信息错误信息错误信息。
+        </p>
+        <div class="form-group">
+          <label for="username">手机</label>
+          <input class="form-control" id="username" name="username" type="text">
+        </div>
+        <div class="form-group">
+          <label for="password">密码</label>
+          <input class="form-control" id="password" name="password" type="password">
+        </div>
+        <button type="submit" class="btn btn-submit">登录</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
