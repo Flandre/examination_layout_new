@@ -136,7 +136,8 @@ var examData = {
     "uLimbs": "jWewedza7qhWhgjt.png,4,3,1511111145678",
     "vehicleType": "C1小型汽车",
     "vision": "5.0,5.0,1511111964555",
-    "feedback":"这是备注备注备注"
+    "feedback":"这是备注备注备注",
+    "faceRecognition": 46,
   },
   "examData": {
     "vision": {

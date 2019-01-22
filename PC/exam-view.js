@@ -138,6 +138,13 @@ function getExamData(id) {
       /* 填充照片 */
       $('.license').attr('src', d.infoImgs.license)
       $('.id-cord').attr('src', d.infoImgs.idcard)
+      /* 判断匹配度 */
+      $('.face-recognition-box').removeClass('warn')
+      if(d.exam.faceRecognition >= 0 && isExam) {
+        if(d.exam.faceRecognition == 0 || d.exam.faceRecognition > 45){
+          $('.face-recognition-box').addClass('warn')
+        }
+      }
 
       $('.img-arm').attr('src', d.examImgs.uLimbs)
       $('.img-r-body').attr('src', d.examImgs.rBody)
