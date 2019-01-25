@@ -140,9 +140,15 @@ function getExamData(id) {
       $('.id-cord').attr('src', d.infoImgs.idcard)
       /* 判断匹配度 */
       $('.face-recognition-box').removeClass('warn')
+      $('.photo-desc').html('').hide()
       if(d.exam.faceRecognition >= 0 && isExam) {
         if(d.exam.faceRecognition == 0 || d.exam.faceRecognition > 45){
           $('.face-recognition-box').addClass('warn')
+          if(d.exam.faceRecognition == 0){
+            $('.photo-desc').html('匹配失败').show()
+          } else {
+            $('.photo-desc').html('不匹配度:' + (100 - d.exam.faceRecognition) + '%').show()
+          }
         }
       }
 
